@@ -1,9 +1,9 @@
 node {
   stage('Build') {
     git([
-      url: "git@github.com:GradientLabs/apidocs.git",
+      url: "git@github.com:naren1219/tomcat.git",
       branch: "master",
-      credentialsId: "60736e8a-c504-491f-87f0-31223220ef1d"
+      credentialsId: "f8f735bb-7b02-4814-973a-dc77ef89d2eb"
     ])
     // withEnv(["ENV=porduction"]) {
     sh '''

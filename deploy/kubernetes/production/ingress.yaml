@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: naren
+  namespace: production
+  annotations:
+    alb.ingress.kubernetes.io/security-groups: allow-https-all,k8s-elb-tagging
+    alb.ingress.kubernetes.io/subnets: subnet-1b44be53,subnet-d554f0b3,subnet-24fd887f
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-west-2:940441434738:certificate/1ed12f94-cc37-4e39-a459-781864bbd71c
+    alb.ingress.kubernetes.io/healthcheck-path: /healthcheck
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
+    kubernetes.io/ingress.class: alb
+spec:
+  rules:
+  - host: demo.api.naren.tk
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: naren
+          servicePort: 80

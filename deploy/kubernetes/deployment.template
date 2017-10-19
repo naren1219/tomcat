@@ -1,0 +1,41 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: naren
+  name: naren
+  namespace: {{ENV}}
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      name: naren
+      labels:
+        service: naren
+    spec:
+      serviceAccountName: naren
+      containers:
+      - name: naren
+        image: 026043779925.dkr.ecr.us-west-2.amazonaws.com/tomcat:{{VERSION}}
+        env:
+        - name: NODE_ENV
+          value: {{ENV}}
+        - name: BUILD_VERSION
+          value: {{VERSION}}
+        livenessProbe:
+          httpGet:
+            path: /healthcheck
+            port: 3000
+          initialDelaySeconds: 60
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /healthcheck
+            port: 3000
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
