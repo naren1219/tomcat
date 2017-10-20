@@ -1,6 +1,8 @@
 kind: Service
 apiVersion: v1
 metadata:
+  labels:
+    service: apidocs
   name: tomcat7-lb
   namespace: production
 spec:
@@ -10,4 +12,5 @@ spec:
     - protocol: "TCP"
       port: 80
       targetPort: 8080
+      nodePort: 30014
   type: LoadBalancer

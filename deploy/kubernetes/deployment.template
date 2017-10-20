@@ -24,6 +24,11 @@ spec:
      containers:
       - name: tomcat7
         image: 026043779925.dkr.ecr.us-west-2.amazonaws.com/tomcat:{{VERSION}}
+        env:
+        - name: NODE_ENV
+          value: {{ENV}}
+        - name: BUILD_VERSION
+          value: {{VERSION}}
         ports:
         - name: tomcat-port
           containerPort: 8080 # WEB port number.
@@ -32,4 +37,10 @@ spec:
             path: /
             port: tomcat-port
           initialDelaySeconds: 60
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /healthcheck
+            port: 3000
+          initialDelaySeconds: 5
           timeoutSeconds: 5
