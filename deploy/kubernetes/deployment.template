@@ -41,6 +41,6 @@ spec:
         readinessProbe:
           httpGet:
             path: /healthcheck
-            port: 3000
+            port: tomcat-port
           initialDelaySeconds: 5
           timeoutSeconds: 5
