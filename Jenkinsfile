@@ -17,6 +17,7 @@ node {
     withEnv(["ENV=production"]) {
       sh '''
         export VERSION=$(git log -1 --format=%h)
+        cd deploy/kubernetes
         kubectl --namespace=$ENV apply -f $ENV/tomcat7-service.yaml
         kubectl --namespace=$ENV apply -f $ENV/tomcat7-deployment.yaml
       '''
