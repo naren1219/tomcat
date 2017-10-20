@@ -12,7 +12,7 @@ jar -xvf VN_sample.war
 eval $(aws ecr get-login --region us-west-2 --no-include-email)
 
 # Build the app image:
-docker build --force-rm=true -t $IMAGE:$VERSION .
+sudo docker build --force-rm=true -t $IMAGE:$VERSION .
 
 # Push both images
 docker push $IMAGE:$VERSION
