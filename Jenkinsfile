@@ -14,7 +14,7 @@ node {
   }
 
   stage('Deploy to Production') {
-    withEnv(["ENV=production", "PATH+KUBECTL=/var/lib/jenkins/tools/com.cloudbees.jenkins.plugins.customtools.CustomTool/kubectl"]) {
+    withEnv(["ENV=production"]) {
       sh '''
         export VERSION=$(git log -1 --format=%h)
         cd deploy/kubernetes
