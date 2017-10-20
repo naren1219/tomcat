@@ -1,23 +1,13 @@
-apiVersion: v1
 kind: Service
+apiVersion: v1
 metadata:
-  labels:
-    service: naren
-  name: naren
+  name: tomcat7-lb
   namespace: production
 spec:
-  type: NodePort
-  ports:
-  - name: tomcat
-    protocol: TCP
-    port: 80
-    targetPort: 8080
-    nodePort: 30014
   selector:
-    service: naren
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: naren
-  namespace: production
+    app: tomcat7
+  ports:
+    - protocol: "TCP"
+      port: 80
+      targetPort: 8080
+  type: LoadBalancer

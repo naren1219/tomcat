@@ -18,8 +18,10 @@ node {
       sh '''
         export VERSION=$(git log -1 --format=%h)
         cd deploy/kubernetes
-        kubectl --namespace=$ENV apply -f $ENV/tomcat7-service.yaml
-        kubectl --namespace=$ENV apply -f $ENV/tomcat7-deployment.yaml
+        python build_deployment_from_template.py 
+        cat $ENV/deployment.yaml
+        kubectl --namespace=$ENV apply -f $ENV/service.yaml
+        kubectl --namespace=$ENV apply -f $ENV/deployment.yaml
       '''
     }
   }
