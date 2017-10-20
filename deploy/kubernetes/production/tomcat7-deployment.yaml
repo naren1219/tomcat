@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: tomcat7
-  namespace: {{ENV}}
+  namespace: production
 spec:
   # Start two Ignite nodes by default.
   replicas: 2

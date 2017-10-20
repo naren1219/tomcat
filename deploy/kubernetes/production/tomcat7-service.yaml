@@ -2,7 +2,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: tomcat7-lb
-  namespace: {{ENV}}
+  namespace: production
 spec:
   selector:
     app: tomcat7
