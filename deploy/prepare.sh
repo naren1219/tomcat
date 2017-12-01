@@ -1,4 +1,5 @@
 #!/bin/bash
+export VERSION=$(git log -1 --format=%h)
 set -e
 
 BASEDIR=$(dirname $0)
