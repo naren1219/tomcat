@@ -1,33 +1,29 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: tomcat7
-  namespace: {{ENV}}
   labels:
     name: tomcat7
+  name: tomcat7
+  namespace: {{ENV}}
 spec:
-  # Start two Ignite nodes by default.
-  #######
   replicas: 2
   revisionHistoryLimit: 100
   strategy:
-    type: RollingUpdate
     rollingUpdate:
       maxSurge: 1
       maxUnavailable: 1
-  minReadySeconds: 5
+    type: RollingUpdate
   template:
     metadata:
       name: tomcat7
       labels:
-        service: tomcat7
+        app: tomcat7
     spec:
-      serviceAccountName: tomcat7
-      containers:
-        # Custom pod name.
-      - name: tomcat7-node
-        image: 749833379596.dkr.ecr.us-east-1.amazonaws.com/genospace/tomcat7:demo
-        imagePullPolicy: Always 
+     hostNetwork: true
+     dnsPolicy: ClusterFirstWithHostNet 
+     containers:
+      - name: tomcat7
+        image: 026043779925.dkr.ecr.us-west-2.amazonaws.com/tomcat:{{VERSION}}
         env:
         - name: NODE_ENV
           value: {{ENV}}
@@ -41,17 +37,10 @@ spec:
             path: /
             port: tomcat-port
           initialDelaySeconds: 60
-          timeoutSeconds: 30
+          timeoutSeconds: 5
         readinessProbe:
           httpGet:
             path: /
             port: tomcat-port
           initialDelaySeconds: 5
           timeoutSeconds: 5
-        volumeMounts:
-          - name: admin-config-groovy-secret-volume
-            mountPath: /opt/tomcat/resources
-      volumes:
-        - name: admin-config-groovy-secret-volume
-          secret:
-           secretName: admin-config-groovy-secret

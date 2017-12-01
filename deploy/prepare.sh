@@ -5,7 +5,7 @@ set -e
 BASEDIR=$(dirname $0)
 
 # login to private docker registry
-IMAGE=026043779925.dkr.ecr.us-west-2.amazonaws.com/tomcat
+IMAGE=749833379596.dkr.ecr.us-east-1.amazonaws.com/genospace/tomcat7
 
 jar -xvf VN_sample.war
 

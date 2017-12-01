@@ -1,13 +1,13 @@
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: naren
-  namespace: production
+  name: tomcat7
+  namespace: demo
 spec:
   minReplicas: 1
-  maxReplicas: 1
+  maxReplicas: 5
   targetCPUUtilizationPercentage: 75
   scaleTargetRef:
     apiVersion: extensions/v1beta1
     kind: Deployment
-    name: naren
+    name: tomcat7

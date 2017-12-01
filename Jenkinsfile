@@ -5,7 +5,7 @@ node {
       branch: "master",
       credentialsId: "f8f735bb-7b02-4814-973a-dc77ef89d2eb"
     ])
-    // withEnv(["ENV=porduction"]) {
+    // withEnv(["ENV=demo"]) {
     sh '''
       export VERSION=$(git log -1 --format=%h)
       ./deploy/prepare.sh
@@ -13,15 +13,17 @@ node {
     // }
   }
 
-  stage('Deploy to Production') {
-    withEnv(["ENV=production"]) {
+  stage('Deploy to Demo') {
+    withEnv(["ENV=demo"]) {
       sh '''
         export VERSION=$(git log -1 --format=%h)
         cd deploy/kubernetes
         python build_deployment_from_template.py 
         cat $ENV/deployment.yaml
-        kubectl --namespace=$ENV apply -f $ENV/service.yaml
-        kubectl --namespace=$ENV apply -f $ENV/deployment.yaml
+        kubectl --namespace=$ENV apply -f $ENV/tomcat7-service.yaml
+        kubectl --namespace=$ENV apply -f $ENV/tomcat7-hpa.yaml
+        kubectl --namespace=$ENV apply -f $ENV/tomcat7-deployment.yaml
+        kubectl --namespace=$ENV apply -f $ENV/tomcat7-ingress.yaml
       '''
     }
   }

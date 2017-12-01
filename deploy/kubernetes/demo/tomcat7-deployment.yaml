@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: tomcat7
-  namespace: {{ENV}}
+  namespace: demo
   labels:
     name: tomcat7
 spec:
@@ -28,11 +28,6 @@ spec:
       - name: tomcat7-node
         image: 749833379596.dkr.ecr.us-east-1.amazonaws.com/genospace/tomcat7:demo
         imagePullPolicy: Always 
-        env:
-        - name: NODE_ENV
-          value: {{ENV}}
-        - name: BUILD_VERSION
-          value: {{VERSION}}
         ports:
         - name: tomcat-port
           containerPort: 8080 # WEB port number.
