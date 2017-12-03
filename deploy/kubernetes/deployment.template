@@ -26,7 +26,7 @@ spec:
       containers:
         # Custom pod name.
       - name: tomcat7-node
-        image: 749833379596.dkr.ecr.us-east-1.amazonaws.com/genospace/tomcat7:demo
+        image: 749833379596.dkr.ecr.us-east-1.amazonaws.com/genospace/tomcat7:{{VERSION}}
         imagePullPolicy: Always 
         env:
         - name: NODE_ENV

@@ -1,19 +1,18 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: tomcat7-ingress
-  namespace: demo
+  name: tomcat-ingress
+  namespace: dev
   annotations:
     kubernetes.io/ingress.class: "alb"
-    alb.ingress.kubernetes.io/subnets: subnet-6d49d126, subnet-2f65b900
-    alb.ingress.kubernetes.io/security-groups: sg-df43c5aa
+    alb.ingress.kubernetes.io/subnets: subnet-20e0826b, subnet-0f5ef820
     alb.ingress.kubernetes.io/scheme: internet-facing
 #    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-west-2:940441434738:certificate/1ed12f94-cc37-4e39-a459-781864bbd71c
 #    alb.ingress.kubernetes.io/healthcheck-path: /healthcheck
 #    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
 
   labels:
-    app: tomcat7
+    app: tomcat
 spec:
   rules:
   - host: tomcat.genospace.com
@@ -21,13 +20,13 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: tomcat7
+          serviceName: tomcat
           servicePort: 80
   - host: mysite2.com
     http:
       paths:
       - path: /test
         backend:
-          serviceName: tomcat7
+          serviceName: tomcat
           servicePort: 80
 

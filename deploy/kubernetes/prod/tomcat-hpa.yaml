@@ -1,8 +1,8 @@
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: tomcat7
-  namespace: demo
+  name: tomcat
+  namespace: prod
 spec:
   minReplicas: 1
   maxReplicas: 5
@@ -10,4 +10,4 @@ spec:
   scaleTargetRef:
     apiVersion: extensions/v1beta1
     kind: Deployment
-    name: tomcat7
+    name: tomcat
