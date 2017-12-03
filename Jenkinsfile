@@ -20,7 +20,7 @@ node {
         export VERSION=$(git log -1 --format=%h)
         cd deploy/kubernetes
         python build_deployment_from_template.py 
-        cat $ENV/deployment.yaml
+        cat $ENV/tomcat-deployment.yaml
         kubectl --namespace=$ENV apply -f $ENV/tomcat-service.yaml
         kubectl --namespace=$ENV apply -f $ENV/tomcat-hpa.yaml
         kubectl --namespace=$ENV apply -f $ENV/tomcat-deployment.yaml
@@ -51,7 +51,7 @@ node {
         export VERSION=$(git log -1 --format=%h)
         cd deploy/kubernetes
         python build_deployment_from_template.py
-        cat $ENV/deployment.yaml
+        cat $ENV/tomcat-deployment.yaml
         kubectl --namespace=$ENV apply -f $ENV/tomcat-service.yaml
         kubectl --namespace=$ENV apply -f $ENV/tomcat-hpa.yaml
         kubectl --namespace=$ENV apply -f $ENV/tomcat-deployment.yaml
