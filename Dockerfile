@@ -46,6 +46,6 @@ WORKDIR /opt/tomcat
 
 COPY VN_sample_war/ROOT.war /opt/tomcat/webapps/ROOT.war
 RUN mkdir -p /opt/tomcat/resources
-COPY admin-config.groovy  /opt/tomcat/resources/admin-config.groovy
+#COPY admin-config.groovy  /opt/tomcat/resources/admin-config.groovy
 # Launch Tomcat
 CMD ["/opt/tomcat/bin/catalina.sh", "run"]
