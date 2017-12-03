@@ -1,3 +1,4 @@
+if(env.BRANCH_NAME == 'master')
 node {
   stage('Build') {
     git([
@@ -20,14 +21,15 @@ node {
         cd deploy/kubernetes
         python build_deployment_from_template.py 
         cat $ENV/deployment.yaml
-        kubectl --namespace=$ENV apply -f $ENV/tomcat7-service.yaml
-        kubectl --namespace=$ENV apply -f $ENV/tomcat7-hpa.yaml
-        kubectl --namespace=$ENV apply -f $ENV/tomcat7-deployment.yaml
-        kubectl --namespace=$ENV apply -f $ENV/tomcat7-ingress.yaml
+        kubectl --namespace=$ENV apply -f $ENV/tomcat-service.yaml
+        kubectl --namespace=$ENV apply -f $ENV/tomcat-hpa.yaml
+        kubectl --namespace=$ENV apply -f $ENV/tomcat-deployment.yaml
+        kubectl --namespace=$ENV apply -f $ENV/tomcat-ingress.yaml
       '''
     }
   }
 }
+if(env.BRANCH_NAME == 'dev')
 node {
   stage('Build') {
     git([
@@ -50,10 +52,10 @@ node {
         cd deploy/kubernetes
         python build_deployment_from_template.py
         cat $ENV/deployment.yaml
-        kubectl --namespace=$ENV apply -f $ENV/tomcat7-service.yaml
-        kubectl --namespace=$ENV apply -f $ENV/tomcat7-hpa.yaml
-        kubectl --namespace=$ENV apply -f $ENV/tomcat7-deployment.yaml
-        kubectl --namespace=$ENV apply -f $ENV/tomcat7-ingress.yaml
+        kubectl --namespace=$ENV apply -f $ENV/tomcat-service.yaml
+        kubectl --namespace=$ENV apply -f $ENV/tomcat-hpa.yaml
+        kubectl --namespace=$ENV apply -f $ENV/tomcat-deployment.yaml
+        kubectl --namespace=$ENV apply -f $ENV/tomcat-ingress.yaml
       '''
     }
   }
