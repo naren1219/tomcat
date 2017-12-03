@@ -1,3 +1,4 @@
+if(env.BRANCH_NAME == 'master')
 node {
   stage('Build') {
     git([
@@ -28,6 +29,7 @@ node {
     }
   }
 }
+if(env.BRANCH_NAME == 'dev')
 node {
   stage('Build') {
     git([
