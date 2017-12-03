@@ -5,7 +5,7 @@ metadata:
   name: tomcat
   namespace: dev
   labels:
-    service: tomcat
+    service: tomcat-dev
 spec:
   type: NodePort
   selector:

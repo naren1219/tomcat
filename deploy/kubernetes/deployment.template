@@ -1,10 +1,10 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: tomcat7
+  name: tomcat
   namespace: {{ENV}}
   labels:
-    name: tomcat7
+    name: tomcat-{{ENV}}
 spec:
   # Start two Ignite nodes by default.
   #######
@@ -18,14 +18,14 @@ spec:
   minReadySeconds: 5
   template:
     metadata:
-      name: tomcat7
+      name: tomcat
       labels:
-        service: tomcat7
+        service: tomcat-{{ENV}}
     spec:
       serviceAccountName: tomcat-{{ENV}}
       containers:
         # Custom pod name.
-      - name: tomcat7-node
+      - name: tomcat-node
         image: 749833379596.dkr.ecr.us-east-1.amazonaws.com/genospace/tomcat7:{{VERSION}}
         imagePullPolicy: Always 
         env:

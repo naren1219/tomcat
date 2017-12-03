@@ -12,7 +12,7 @@ metadata:
 #    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
 
   labels:
-    app: tomcat
+    app: tomcat-dev
 spec:
   rules:
   - host: tomcat.genospace.com
