@@ -43,7 +43,7 @@ def check_valid_env_var_dict():
 if check_valid_env_var_dict():
     try:
         rendered_kube_template = KUBERNETES_CONFIG_TEMPLATE.render(**bash_env_vars_as_dict)
-        KUBERNETES_DEPLOY_FILE = KUBERNETES_CONFIG_HOME + '/'+ bash_env_vars_as_dict['ENV'] + '/' + 'deployment.yaml'
+        KUBERNETES_DEPLOY_FILE = KUBERNETES_CONFIG_HOME + '/'+ bash_env_vars_as_dict['ENV'] + '/' + 'tomcat-deployment.yaml'
 
         with open(KUBERNETES_DEPLOY_FILE, 'w+') as KUBE_DEPLOY_CONFIG_YAML_FD:
             KUBE_DEPLOY_CONFIG_YAML_FD.write(rendered_kube_template)
