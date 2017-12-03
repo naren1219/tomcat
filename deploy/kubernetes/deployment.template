@@ -22,7 +22,7 @@ spec:
       labels:
         service: tomcat7
     spec:
-      serviceAccountName: {{ENV}}
+      serviceAccountName: tomcat-{{ENV}}
       containers:
         # Custom pod name.
       - name: tomcat7-node
